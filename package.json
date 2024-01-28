@@ -1,0 +1,24 @@
+{
+  "name": "a1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd projects/vite-app && yarn dev --port 5000"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*",
+    "projects/*"
+  ],
+  "dependencies": {
+    "path": "^0.12.7",
+    "react-router-dom": "^6.21.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.7"
+  }
+}

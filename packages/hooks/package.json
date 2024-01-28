@@ -1,0 +1,11 @@
+{
+  "name": "@packages/hooks",
+  "version": "0.0.1",
+  "description": "A minimal context api library",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {},
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}
