@@ -1,5 +1,5 @@
 import useQuery from "@@hooks/useQuery";
-import { useProd } from "@pages/home/useHome";
+import { useProd } from "@hooks/handleData/useProd";
 import React, { useEffect } from "react";
 
 const Detail = () => {
