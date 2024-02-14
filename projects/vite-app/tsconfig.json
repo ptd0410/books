@@ -24,23 +24,21 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
-      "@@*": [
-        "bbb/*"
-      ],
       "@*": [
         "src/*"
       ],
-      "@hooks/*": [
-        "../../packages/hooks/*"
+      "@@*": [
+        "../../packages/*"
       ],
-      "@hi": [
-        "hihiih.ts"
-      ]
     }
   },
   "include": [
-    "src"
+    "src",
+    "../../packages/"
   ],
+  // "exclude": [
+  //   "../../node_modules",
+  // ],
   "references": [
     {
       "path": "./tsconfig.node.json"
