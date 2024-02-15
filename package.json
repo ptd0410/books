@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd projects/vite-app && yarn dev --port 5000",
-    "start:server": "cd projects/server && yarn start"
+    "start:server": "cd projects/server && yarn start",
+    "start:cms": "cd projects/cms && yarn dev --port 5001"
   },
   "keywords": [],
   "author": "",
