@@ -16,7 +16,7 @@ export const useAuth = () => {
   const isLogin = params?.type === "login";
   const data = useRef({ ...authData });
 
-  const [showPass, setShowPass] = useState(true);
+  const [showPass, setShowPass] = useState(false);
   const inputName = Object.keys(authData);
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +26,8 @@ export const useAuth = () => {
 
   const onSubmit = async () => {
     try {
+      console.log("data.current", data.current);
+
       const url = isLogin ? "" : "";
       setLoading(true);
       const res = await apiClient.post(url, {

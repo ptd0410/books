@@ -9,13 +9,13 @@ const HomeFooter = memo(() => {
   const nav = useNavigate();
 
   return (
-    <div className="flex items-center py-3">
+    <div className="flex items-center py-3 shadow-1">
       {footerData.map((item) => {
         const check = pathname === item.path;
 
         return (
           <div
-            className="flex flex-col items-center gap-3 w-full "
+            className="flex flex-col items-center gap-[2px] w-full "
             key={item.path}
             onClick={() => nav(item.path)}
           >
@@ -26,6 +26,14 @@ const HomeFooter = memo(() => {
                 check ? "text-app" : "text-black"
               )}
             />
+            <p
+              className={classNames(
+                "capitalize text-[12px]",
+                check ? "text-app" : "text-black"
+              )}
+            >
+              {item.text}
+            </p>
           </div>
         );
       })}

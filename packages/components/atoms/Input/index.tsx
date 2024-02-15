@@ -9,7 +9,7 @@ const Input = ({ className, left, right, ...props }: IInput) => {
   return (
     <div
       className={classNames(
-        "flex items-center gap-3 py-3 rounded-xl",
+        "flex items-center gap-3 py-2 px-5 rounded-xl border border-black",
         className
       )}
     >

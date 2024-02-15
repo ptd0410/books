@@ -10,6 +10,9 @@ export default {
       colors: {
         app: "#ff0000",
       },
+      boxShadow: {
+        1: "0px -1px 6px #888888",
+      },
     },
   },
   plugins: [],

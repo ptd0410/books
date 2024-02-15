@@ -1,6 +1,6 @@
 import { apiClient } from "@api";
 import { useLoading } from "@hooks/useLoading";
-import { stringify } from "querystring";
+import { stringify } from "qs";
 import { useEffect, useState } from "react";
 
 export const useNoti = (autoGetAll = false) => {

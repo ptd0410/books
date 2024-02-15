@@ -4,6 +4,7 @@ import { footerData } from "@pages/home/footer/mock";
 import Search from "@pages/search";
 import Noti from "@pages/noti";
 import Detail from "@pages/detail";
+import Auth from "@pages/auth";
 const MainRouter = () => {
   const router = createHashRouter([
     {
@@ -27,6 +28,10 @@ const MainRouter = () => {
     {
       path: "/detail",
       element: <Detail />,
+    },
+    {
+      path: "/auth",
+      element: <Auth />,
     },
   ]);
 

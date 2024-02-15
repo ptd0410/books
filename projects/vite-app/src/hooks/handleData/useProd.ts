@@ -1,7 +1,7 @@
 import { prodModel } from "@@models/prod";
 import { apiClient } from "@api";
 import { useLoading } from "@hooks/useLoading";
-import { stringify } from "querystring";
+import { stringify } from "qs";
 import React, { useEffect, useState } from "react";
 
 interface IProdQuery {}
