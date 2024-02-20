@@ -1,8 +1,13 @@
-import { IProd, INoti, IUser, IBuyProd } from "@@models/prod";
+import {
+  notiModel,
+  authDataModel,
+  prodModel,
+  userModel,
+} from "@@models/_index";
 
 declare global {
-  type IProd = IProd;
-  type INoti = INoti;
-  type IUser = IUser;
-  type IBuyProd = IBuyProd;
+  type IAuthData = typeof authDataModel;
+  type IProd = typeof prodModel;
+  type INoti = typeof notiModel;
+  type ÍUser = typeof userModel;
 }

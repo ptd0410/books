@@ -10,6 +10,11 @@ const Detail = () => {
 
   console.log("detail", prodDetail);
 
+  const b: IAuthData = {
+    password: "",
+    username: "",
+  };
+
   useEffect(() => {
     getProdDetail(id);
   }, []);

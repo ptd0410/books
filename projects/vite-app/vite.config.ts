@@ -3,13 +3,13 @@ import react from "@vitejs/plugin-react-swc";
 import * as path from "path";
 
 const cv = (arr: string[]) => {
-  const obj = {};
+  const obj: any = {};
   arr.map((item) => (obj[`@${item}`] = path.resolve(__dirname, `src/${item}`)));
   return obj;
 };
 
 const cvPackages = (arr: string[]) => {
-  const obj = {};
+  const obj: any = {};
   arr.map(
     (item) =>
       (obj[`@@${item}`] = path.resolve(__dirname, `../../packages/${item}`))

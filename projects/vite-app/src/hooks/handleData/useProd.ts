@@ -1,4 +1,3 @@
-import { prodModel } from "@@models/prod";
 import { apiClient } from "@api";
 import { useLoading } from "@hooks/useLoading";
 import { stringify } from "qs";
@@ -11,7 +10,7 @@ export const useProd = (autoGetAll = false) => {
   const [allProd, setAllProd] = useState<IProd[]>([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
-  const [prodDetail, setProdDetail] = useState(prodModel);
+  const [prodDetail, setProdDetail] = useState<IProd>();
 
   const isMore = page < totalPage;
 

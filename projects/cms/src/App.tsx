@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { apiClient } from "@api";
+import "./index.css";
+import { useEffect } from "react";
+import { authDataModel } from "@@models/postData";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const click = async () => {
+    try {
+      const res = await apiClient.post(`/auth/login`, {
+        username: "hihi",
+        password: "hii",
+      });
+      console.log("ressssss", res);
+    } catch (error) {
+      console.log("err api", error);
+    }
+  };
+
+  useEffect(() => {
+    const test = createMongooseModel(authDataModel);
+    console.log("tessss", test);
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button onClick={click}>click</button>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
+const createMongooseModel = (data) => {
+  const res: any = {};
+  Object.entries(data).map(([key, value]) => {
+    if (typeof value === "string") {
+      res[key] = String;
+    } else if (typeof value === "number") {
+      res[key] = Number;
+    }
+  });
+
+  return res;
+};
