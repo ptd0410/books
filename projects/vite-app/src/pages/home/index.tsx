@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import HomeFooter from "./footer";
 import HomeHeader from "./header";
-import MainLayout from "@@components/atoms/layout/MainLayout";
 
 import useQuery from "@@hooks/useQuery";
+import MainLayout from "@@layouts/MainLayout";
 
 const Home = () => {
   const { params } = useQuery();

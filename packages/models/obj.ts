@@ -15,6 +15,9 @@ export const prodModel = {
 export const userModel = {
   ...authDataModel,
   role: -1,
+  email: "",
+  fullName: "",
+  phone: "",
 };
 
 export const notiModel = {};

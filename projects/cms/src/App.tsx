@@ -1,7 +1,6 @@
 import { apiClient } from "@api";
 import "./index.css";
 import { useEffect } from "react";
-import { authDataModel } from "@@models/postData";
 
 function App() {
   const click = async () => {
@@ -16,10 +15,7 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    const test = createMongooseModel(authDataModel);
-    console.log("tessss", test);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <>

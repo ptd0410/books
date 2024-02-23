@@ -8,6 +8,13 @@ const app: Express = express();
 app.use(cors());
 app.use(express.json());
 
+app.use(
+  cors({
+    origin: ["http://localhost:8000"],
+    credentials: true,
+  })
+);
+
 app.use("/auth", authRouter);
 
 const start = async () => {

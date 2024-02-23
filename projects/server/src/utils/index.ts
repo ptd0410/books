@@ -22,6 +22,11 @@ export const checkExistData = async (model: Model<any>, data: any) => {
   return true;
 };
 
+export const checkNullData = (data: any) => {
+  if (!data || data === null) return true;
+  return false;
+};
+
 export const sendErr = (res: Response, status: number, message) => {
   res.status(status).send({ message });
 };
