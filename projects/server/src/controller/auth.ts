@@ -2,12 +2,17 @@ import { userMod } from "@model";
 import { checkMissingData, checkNullData, createToken, sendErr } from "@utils";
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
-import { authDataModel, userModel } from "@@models/obj";
 import nodemailer from "nodemailer";
 import { ggSendEmail } from "@@config";
 
-type IAuthData = typeof authDataModel;
 // type IUser = typeof userModel;
+const authDataModel: IAuth = { password: "", username: "" };
+const userModel: IUserInfo = {
+  email: "",
+  fullName: "",
+  phone: -1,
+  role: -1,
+};
 
 const createAuthToken = (user: { _id: any; role: number }) => {
   return createToken({
@@ -18,7 +23,7 @@ const createAuthToken = (user: { _id: any; role: number }) => {
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const data: IAuthData = req.body;
+    const data: IAuth = req.body;
     const check = checkMissingData(authDataModel, data);
     if (check) return sendErr(res, 404, check);
     const { username, password } = data;
@@ -29,6 +34,7 @@ export const login = async (req: Request, res: Response) => {
 
     if (
       existUser !== null &&
+      existUser &&
       (await bcrypt.compare(password, existUser.password))
     ) {
       const token = createAuthToken(existUser);
@@ -46,7 +52,7 @@ export const login = async (req: Request, res: Response) => {
 export const createUser =
   (addedRole: number) => async (req: Request, res: Response) => {
     try {
-      const data: IAuthData = req.body;
+      const data: IAuth = req.body;
       const check = checkMissingData(authDataModel, data);
       if (check) return sendErr(res, 404, check);
       const { username, password } = data;
@@ -71,7 +77,7 @@ export const createUser =
 
 export const updateUser = async (req: Request, res: Response) => {
   try {
-    const user: MgData<IUser> = res.locals.user;
+    const user: Mg<IUser> = res.locals.user;
     if (!user) return sendErr(res, 401, "Invalid user for update");
     const data = req.body;
 
@@ -92,12 +98,33 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
-export const viewUser = async (req: Request, res: Response) => {
+export const getUserList = async (req: Request, res: Response) => {
   try {
     const query = req.query;
-    const username = query?.username;
-    if (!username) return sendErr(res, 404, "Missing username ");
-    const user = await userMod.findOne({ username });
+    const page = Number(query?.page || 1);
+    const limit = Number(query?.limit || 10);
+    const data = await userMod
+      .find()
+      .limit(limit)
+      .skip((page - 1) * limit)
+      .exec();
+
+    res.send({
+      data,
+      page,
+      limit,
+    });
+  } catch (error) {
+    sendErr(res, 502, "View prod failed");
+  }
+};
+
+export const getUserDetail = async (req: Request, res: Response) => {
+  try {
+    const query = req.query;
+    const id = query?.id;
+    if (!id) return sendErr(res, 404, "Missing id ");
+    const user = await userMod.findOne({ _id: id });
     if (checkNullData(user)) return sendErr(res, 404, "User not exist ");
     res.send({ user });
   } catch (error) {
@@ -107,7 +134,7 @@ export const viewUser = async (req: Request, res: Response) => {
 
 export async function sendMailResetPassword(req: Request, res: Response) {
   try {
-    const user: MgData<IUser> = res.locals.user;
+    const user: Mg<IUser> = res.locals.user;
     if (!user) return sendErr(res, 401, "Invalid user for send email");
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com", // SMTP server address (usually mail.your-domain.com)
@@ -138,7 +165,7 @@ export async function sendMailResetPassword(req: Request, res: Response) {
 
 export const reset = async (req: Request, res: Response) => {
   try {
-    const user: MgData<IUser> = res.locals.user;
+    const user: Mg<IUser> = res.locals.user;
     if (!user) return sendErr(res, 401, "Invalid user for send email");
   } catch (error) {
     sendErr(res, 502, "Reset pass failed");

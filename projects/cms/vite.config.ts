@@ -22,8 +22,25 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      ...cv(["components", "pages", "api", "config", "hooks"]),
-      ...cvPackages(["components", "hooks", "models", "config"]),
+      ...cv([
+        "components",
+        "pages",
+        "api",
+        "config",
+        "hooks",
+        "layouts",
+        "containers",
+        "routers",
+        "utils",
+      ]),
+      ...cvPackages([
+        "components",
+        "hooks",
+        "models",
+        "config",
+        "api",
+        "constants",
+      ]),
     },
   },
 });

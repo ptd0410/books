@@ -1,9 +1,9 @@
-import Input from "@@components/atoms/Input";
-import Icon from "@@components/atoms/icon";
+import Input from "@@components/Input";
+import Icon from "@@components/icon";
 import React, { useCallback } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useAuth } from "./useAuth";
-import Container from "@@components/atoms/layout/Container";
+import Container from "@@components/layout/Container";
 
 const Auth = () => {
   const { inputName, isLogin, onChange, setShowPass, showPass, onSubmit } =

@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-export default function useQuery() {
+export const useQuery = () => {
   const nav = useNavigate();
   const location = useLocation();
   const search = new URLSearchParams(location.search || window.location.search);
@@ -18,4 +18,4 @@ export default function useQuery() {
     params,
     paramsNav,
   };
-}
+};

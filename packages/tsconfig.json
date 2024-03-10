@@ -23,5 +23,13 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
     "baseUrl": ".",
+    "paths": {
+      "@@*": [
+        "./*"
+      ],
+    },
   },
+  "include": [
+    "./",
+  ],
 }

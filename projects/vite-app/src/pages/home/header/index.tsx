@@ -1,6 +1,6 @@
-import Input from "@@components/atoms/Input";
-import Icon from "@@components/atoms/icon";
-import Container from "@@components/atoms/layout/Container";
+import Input from "@@components/Input";
+import Icon from "@@components/icon";
+import Container from "@@components/layout/Container";
 import React from "react";
 import { IoNotificationsOutline } from "react-icons/io5";
 

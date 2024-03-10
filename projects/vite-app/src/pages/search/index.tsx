@@ -1,4 +1,4 @@
-import MainLayout from "@@components/atoms/layout/MainLayout";
+import MainLayout from "@@components/layout/MainLayout";
 import HomeHeader from "@pages/home/header";
 import React from "react";
 

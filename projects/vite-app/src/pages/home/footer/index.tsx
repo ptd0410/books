@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { footerData } from "./mock";
-import Icon from "@@components/atoms/icon";
+import Icon from "@@components/icon";
 import { useLocation, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 

@@ -1,8 +1,9 @@
 import express, { Express } from "express";
 import { mongoUrl, port } from "./config";
 import mongoose from "mongoose";
-import authRouter from "@router/auth";
 import cors from "cors";
+import { authRouter, historyRouter, prodRouter, promoRouter } from "@router";
+import categoryRouter from "@router/category";
 
 const app: Express = express();
 app.use(cors());
@@ -16,6 +17,10 @@ app.use(
 );
 
 app.use("/auth", authRouter);
+app.use("/prod", prodRouter);
+app.use("/history", historyRouter);
+app.use("/promo", promoRouter);
+app.use("/cate", categoryRouter);
 
 const start = async () => {
   try {

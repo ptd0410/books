@@ -1,40 +1,22 @@
-import { apiClient } from "@api";
-import "./index.css";
-import { useEffect } from "react";
+import { RouterProvider, createHashRouter } from "react-router-dom";
+import "./index.scss";
+import Home from "@pages/home";
+import { homeRouter } from "@routers";
 
 function App() {
-  const click = async () => {
-    try {
-      const res = await apiClient.post(`/auth/login`, {
-        username: "hihi",
-        password: "hii",
-      });
-      console.log("ressssss", res);
-    } catch (error) {
-      console.log("err api", error);
-    }
-  };
-
-  useEffect(() => {}, []);
+  const router = createHashRouter([
+    {
+      path: "/",
+      element: <Home />,
+      children: homeRouter,
+    },
+  ]);
 
   return (
     <>
-      <button onClick={click}>click</button>
+      <RouterProvider router={router} />
     </>
   );
 }
 
 export default App;
-
-const createMongooseModel = (data) => {
-  const res: any = {};
-  Object.entries(data).map(([key, value]) => {
-    if (typeof value === "string") {
-      res[key] = String;
-    } else if (typeof value === "number") {
-      res[key] = Number;
-    }
-  });
-
-  return res;
-};

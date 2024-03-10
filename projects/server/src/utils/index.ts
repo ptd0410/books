@@ -27,7 +27,14 @@ export const checkNullData = (data: any) => {
   return false;
 };
 
-export const sendErr = (res: Response, status: number, message) => {
+export const sendErr = (
+  res: Response,
+  status: number,
+  message,
+  err?: { desc: string; error }
+) => {
+  console.log(`⚡️⚡️⚡️ Err ${err?.desc} :`, err?.error);
+
   res.status(status).send({ message });
 };
 

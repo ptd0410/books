@@ -9,11 +9,12 @@ export const checkRole =
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const token: string = req.headers["authorization"] || "";
+      console.log("token", token);
+
       if (token) {
-        const decode: any = jwt.verify(token, SECRECT_TOKEN_KEY);
-        // console.log("⚡️ decode", decode);
+        const decode: any = await jwt.verify(token, SECRECT_TOKEN_KEY);
         const user = await userMod.findById(decode.id);
-        // console.log("⚡️ user", user);
+
         if (typeof role === "undefined" || (user && user?.role <= role)) {
           res.locals.user = user;
           next();
@@ -22,6 +23,8 @@ export const checkRole =
       }
       return sendErr(res, 401, "Unauthorized");
     } catch (error) {
+      console.log("Check role failed", error);
+
       sendErr(res, 502, "Check role failed");
     }
   };
